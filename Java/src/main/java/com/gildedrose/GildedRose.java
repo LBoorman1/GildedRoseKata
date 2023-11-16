@@ -15,7 +15,7 @@ class GildedRose {
             switch (itemName) {
                 case "Aged Brie" -> updateAgedBrie(item);
                 case "Backstage passes to a TAFKAL80ETC concert" -> updateBackstagePass(item);
-                case "Sulfuras, Hand of Ragnaros" -> updateOtherItems(item);
+                case "Sulfuras, Hand of Ragnaros" -> {}
                 default -> updateOtherItems(item);
             }
 
@@ -25,9 +25,7 @@ class GildedRose {
 
     private static void updateOtherItems(Item item) {
         if (item.quality > 0) {
-            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 item.quality = item.quality - 1;
-            }
         }
         updateSellIn(item);
         sellByDateReached(item);
@@ -44,16 +42,10 @@ class GildedRose {
     private static void updateBackstagePass(Item item) {
         if(item.quality < 50) {
             item.quality++;
-            if (item.sellIn < 11) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-            }
-
-            if (item.sellIn < 6) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
+            if(item.sellIn < 6) {
+                item.quality+=2;
+            } else if (item.sellIn < 11) {
+                item.quality++;
             }
         }
         updateSellIn(item);
@@ -66,9 +58,7 @@ class GildedRose {
             if (!item.name.equals("Aged Brie")) {
                 if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     if (item.quality > 0) {
-                        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                            item.quality = item.quality - 1;
-                        }
+                        item.quality = item.quality - 1;
                     }
                 } else {
                     item.quality = 0;
@@ -80,10 +70,7 @@ class GildedRose {
             }
         }
     }
-
     private static void updateSellIn(Item item) {
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            item.sellIn--;
-        }
+        item.sellIn--;
     }
 }

@@ -73,5 +73,24 @@ class GildedRoseTest {
         assertEquals(4, app.items[0].sellIn);
     }
 
+    @Test
+    @DisplayName("TestingQualityIncreaseOnPassesThatAreClose")
+    public void testingQualityIncreaseOnPassesThatAreClose(){
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 3, 34)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(37, app.items[0].quality);
+    }
+
+    @Test
+    @DisplayName("TestingQualityIncreaseOnPassesThatAreClose9")
+    public void testingQualityIncreaseOnPassesThatAreClose9(){
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 9, 34)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(36, app.items[0].quality);
+    }
+
+
 
 }
