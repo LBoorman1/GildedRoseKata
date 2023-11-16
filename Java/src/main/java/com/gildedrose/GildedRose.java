@@ -8,7 +8,11 @@ class GildedRose {
     }
 
     public void updateQuality() {
+
         for (Item item : items) {
+
+            boolean isAgedBrie = item.name.equals("Aged Brie");
+
             if (!item.name.equals("Aged Brie") //items other than aged brie and concert ticket
                     && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (item.quality > 0) {
