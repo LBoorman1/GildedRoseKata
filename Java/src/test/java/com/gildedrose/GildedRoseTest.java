@@ -44,4 +44,34 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(29, app.items[0].quality);
     }
+
+    @Test
+    @DisplayName("Testing that quality goes to 0 of concert ticket after reaching sell by date")
+    public void testingThatQualityGoesTo0OfConcertTicketAfterReachingSellByDate(){
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 45)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality);
+    }
+
+
+    @Test
+    @DisplayName("Testing updateQuality to check sellIn values with Ale")
+    public void testingUpdateQualityToCheckSellInValues(){
+        Item[] items = new Item[] { new Item("Ale", 4, 30)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(3, app.items[0].sellIn);
+    }
+
+    @Test
+    @DisplayName("Testing updateQuality to check sellIn with Sulfuras")
+    public void testingUpdateQualityToCheckSellInWithSulfuras(){
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 4, 80)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(4, app.items[0].sellIn);
+    }
+
+
 }
