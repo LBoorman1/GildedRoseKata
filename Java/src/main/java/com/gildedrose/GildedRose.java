@@ -10,7 +10,6 @@ class GildedRose {
     public void updateQuality() {
 
         for (Item item : items) {
-
             String itemName = item.name;
             switch (itemName) {
                 case "Aged Brie" -> updateAgedBrie(item);
@@ -26,14 +25,6 @@ class GildedRose {
     private static void updateOtherItems(Item item) {
         if (item.quality > 0) {
                 item.quality = item.quality - 1;
-        }
-        updateSellIn(item);
-        sellByDateReached(item);
-    }
-
-    private static void updateAgedBrie(Item item) {
-        if(item.quality < 50) {
-            item.quality++;
         }
         updateSellIn(item);
         sellByDateReached(item);
@@ -65,10 +56,18 @@ class GildedRose {
                 }
             } else {
                 if (item.quality < 50) {
-                    item.quality = item.quality + 1;
+                    item.quality++;
                 }
             }
         }
+    }
+
+    private static void updateAgedBrie(Item item) {
+        if(item.quality < 50) {
+            item.quality++;
+        }
+        updateSellIn(item);
+        sellByDateReached(item);
     }
     private static void updateSellIn(Item item) {
         item.sellIn--;
