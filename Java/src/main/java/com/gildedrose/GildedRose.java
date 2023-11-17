@@ -7,8 +7,7 @@ class GildedRose {
         this.items = items;
     }
 
-    public void updateQuality() {
-
+    public void updateItem() {
         for (Item item : items) {
             String itemName = item.name;
             switch (itemName) {
@@ -22,10 +21,10 @@ class GildedRose {
 
     //This method handles all logic for items other than special items
     private static void updateOtherItems(Item item) {
+        decreaseSellIn(item);
         if (item.quality > 0) {
                 item.quality--;
         }
-        decreaseSellIn(item);
         if(item.sellIn < 0) {
             item.quality--;
         }
@@ -34,6 +33,7 @@ class GildedRose {
 
     //This method handles all logic for backstage passes
     private static void updateBackstagePass(Item item) {
+        decreaseSellIn(item);
         if(item.quality < 50) {
             item.quality++;
             if(item.sellIn < 6) {
@@ -42,7 +42,6 @@ class GildedRose {
                 item.quality++;
             }
         }
-        decreaseSellIn(item);
         if(item.sellIn < 0) {
             item.quality = 0;
         }
@@ -52,13 +51,11 @@ class GildedRose {
     //This method handles all logic if the item is aged brie
     private static void updateAgedBrie(Item item) {
         decreaseSellIn(item);
-        if(item.quality < 50) {
+        if(item.quality < 50 && item.sellIn < 0) {
+            item.quality+=2;
+        } else if (item.quality < 50) {
             item.quality++;
-            if(item.sellIn < 0) {
-                item.quality++;
-            }
         }
-
     }
     private static void decreaseSellIn(Item item) {
         item.sellIn--;

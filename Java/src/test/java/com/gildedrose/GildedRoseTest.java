@@ -11,7 +11,7 @@ class GildedRoseTest {
     void foo() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals("foo", app.items[0].name);
     }
 
@@ -21,7 +21,7 @@ class GildedRoseTest {
     public void testingUpdateQuality(){
         Item[] items = new Item[] { new Item("Aged Brie", 4, 30)};
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals(31, app.items[0].quality);
     }
 
@@ -31,7 +31,7 @@ class GildedRoseTest {
     public void testingUpdateQualityWithSulfurasHandOfRagnaros(){
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 4, 80)};
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals(80, app.items[0].quality);
     }
 
@@ -41,7 +41,7 @@ class GildedRoseTest {
     public void testingUpdateQualityWithAle(){
         Item[] items = new Item[] { new Item("Ale", 4, 30)};
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals(29, app.items[0].quality);
     }
 
@@ -50,7 +50,7 @@ class GildedRoseTest {
     public void testingThatQualityGoesTo0OfConcertTicketAfterReachingSellByDate(){
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 45)};
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals(0, app.items[0].quality);
     }
 
@@ -60,7 +60,7 @@ class GildedRoseTest {
     public void testingUpdateQualityToCheckSellInValues(){
         Item[] items = new Item[] { new Item("Ale", 4, 30)};
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals(3, app.items[0].sellIn);
     }
 
@@ -69,7 +69,7 @@ class GildedRoseTest {
     public void testingUpdateQualityToCheckSellInWithSulfuras(){
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 4, 80)};
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals(4, app.items[0].sellIn);
     }
 
@@ -78,7 +78,7 @@ class GildedRoseTest {
     public void testingQualityIncreaseOnPassesThatAreClose(){
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 3, 34)};
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals(37, app.items[0].quality);
     }
 
@@ -87,7 +87,7 @@ class GildedRoseTest {
     public void testingQualityIncreaseOnPassesThatAreClose9(){
         Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 9, 34)};
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateItem();
         assertEquals(36, app.items[0].quality);
     }
 
