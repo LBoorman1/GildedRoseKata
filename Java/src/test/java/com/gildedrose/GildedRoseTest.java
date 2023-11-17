@@ -91,6 +91,15 @@ class GildedRoseTest {
         assertEquals(36, app.items[0].quality);
     }
 
+    @Test
+    @DisplayName("Testing with conjured apple")
+    public void testingWithConjuredApple(){
+        Item[] items = new Item[] { new Item("Conjured Apple", 0, 34)};
+        GildedRose app = new GildedRose(items);
+        app.updateItem();
+        assertEquals(30, app.items[0].quality);
+    }
+
 
 
 }
