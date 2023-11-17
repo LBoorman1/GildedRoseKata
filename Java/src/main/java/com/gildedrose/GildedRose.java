@@ -17,19 +17,22 @@ class GildedRose {
                 case "Sulfuras, Hand of Ragnaros" -> {}
                 default -> updateOtherItems(item);
             }
-
-            sellByDateReached(item);
         }
     }
 
+    //This method handles all logic for items other than special items
     private static void updateOtherItems(Item item) {
         if (item.quality > 0) {
-                item.quality = item.quality - 1;
+                item.quality--;
         }
-        updateSellIn(item);
-        sellByDateReached(item);
+        decreaseSellIn(item);
+        if(item.sellIn < 0) {
+            item.quality--;
+        }
+
     }
 
+    //This method handles all logic for backstage passes
     private static void updateBackstagePass(Item item) {
         if(item.quality < 50) {
             item.quality++;
@@ -39,37 +42,25 @@ class GildedRose {
                 item.quality++;
             }
         }
-        updateSellIn(item);
-        sellByDateReached(item);
-    }
-
-
-    private static void sellByDateReached(Item item) {
-        if (item.sellIn < 0) {
-            if (!item.name.equals("Aged Brie")) {
-                if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 1;
-                    }
-                } else {
-                    item.quality = 0;
-                }
-            } else {
-                if (item.quality < 50) {
-                    item.quality++;
-                }
-            }
+        decreaseSellIn(item);
+        if(item.sellIn < 0) {
+            item.quality = 0;
         }
+
     }
 
+    //This method handles all logic if the item is aged brie
     private static void updateAgedBrie(Item item) {
+        decreaseSellIn(item);
         if(item.quality < 50) {
             item.quality++;
+            if(item.sellIn < 0) {
+                item.quality++;
+            }
         }
-        updateSellIn(item);
-        sellByDateReached(item);
+
     }
-    private static void updateSellIn(Item item) {
+    private static void decreaseSellIn(Item item) {
         item.sellIn--;
     }
 }
