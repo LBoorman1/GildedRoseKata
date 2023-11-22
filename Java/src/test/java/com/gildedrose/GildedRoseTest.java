@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 class GildedRoseTest {
 
@@ -100,6 +101,10 @@ class GildedRoseTest {
         assertEquals(30, app.items[0].quality);
     }
 
-
+    @Test
+    @DisplayName("Testing SelloutException is thrown with default item")
+    public void testingSelloutExceptionIsThrownWithDefaultItem(){
+        assertThrowsExactly(SelloutException.class, () -> GildedRose.decreaseSellIn(new Item("Ale", 0, 30)));
+    }
 
 }
